@@ -1,15 +1,25 @@
-let productNameImputElement = document.getElementById("product-name");
+let productNameInputElement = document.getElementById("product-name");
 let remainingCharsElement = document.getElementById("remaining-chars");
 
-let maxAllowedChars = productNameImputElement.maxlength;
+let maxAllowedChars = productNameInputElement.maxlength;
 
 function updateRemainingCharacters(event) {
-  let enteredText = event.target.value;
+ let enteredText = event.target.value;
   let enteredTextLength = enteredText.length;
 
   let remainingCharacters = 60 - enteredTextLength;
 
+  
   remainingCharsElement.textContent = remainingCharacters;
+  
+  if (remainingCharacters <= 10) {
+  remainingCharsElement.classList.add("warning");
+  productNameInputElement.classList.add("warning");
+  } else{
+    remainingCharsElement.classList.remove("warning");
+  productNameInputElement.classList.remove("warning");
+  }
+
 }
 
-productNameImputElement.addEventListener("input", updateRemainingCharacters);
+productNameInputElement.addEventListener("input", updateRemainingCharacters);
